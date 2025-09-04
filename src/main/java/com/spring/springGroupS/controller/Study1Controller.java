@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.springGroupS.service.BmiService;
 import com.spring.springGroupS.service.Study1Service;
+import com.spring.springGroupS.service.SungjukService;
+import com.spring.springGroupS.vo.BmiVO;
 import com.spring.springGroupS.vo.HoewonVO;
 import com.spring.springGroupS.vo.SiteInfor2VO;
 import com.spring.springGroupS.vo.SiteInforVO;
@@ -298,6 +301,24 @@ public class Study1Controller {
 		return "study1/aop/aopMenu";
 	}
 	
+	@GetMapping("/aop/test5")
+	public String aopTest5Get() {
+		log.info("study1 컨트롤러의 test5 메소드(전체 스터디1 서비스 수행시간)");
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		study1Service.getAopServiceTest1();
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		study1Service.getAopServiceTest2();
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		study1Service.getAopServiceTest3();
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		study1Service.getAopServiceTest52();
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		study1Service.getAopServiceTest53();
+		
+		return "study1/aop/aopMenu";
+	}
+	
 	/*========================== XML 값주입 연습 ===========================*/
 	@GetMapping("/xml/xmlMenu")
 	public String xmlMenuGet() {
@@ -330,6 +351,29 @@ public class Study1Controller {
 	}
 	
 	// 2번은 숙제로 구현.
+	@Autowired
+	private SungjukService sungjukService;
+	
+	@GetMapping("/xml/xmlTest2")
+	public String xmlTest2Get(Model model) { // sungjuk.xml에서 설정한 vo를 가져옴.
+		AbstractApplicationContext context = new GenericXmlApplicationContext("xml/sungjuk.xml");
+		
+		List<SungjukVO> vos = new ArrayList<SungjukVO>();
+		for(int i=1; i<=3; i++) {
+			String str = "vo" + i;
+			SungjukVO vo = context.getBean(str, SungjukVO.class);
+			vos.add(vo);
+		}
+		
+		// 성적 서비스에서 성적 계산처리
+		sungjukService.calcSungjukList(vos);
+		
+		model.addAttribute("vos", vos);
+		
+		context.close();
+		return "study1/xml/xmlTest2";
+	}
+	
 	
 	@GetMapping("/xml/xmlTest3")
 	public String xmlTest3Get(Model model) { 
@@ -351,5 +395,27 @@ public class Study1Controller {
 		
 		context.close();
 		return "study1/xml/xmlTest4";
+	}
+	
+	@Autowired
+  private BmiService bmiService;
+	
+	@GetMapping("/xml/xmlTest5")
+	public String xmlTest5Get(Model model) { 
+		AbstractApplicationContext context = new GenericXmlApplicationContext("xml/bmi.xml");
+		
+		List<BmiVO> vos = new ArrayList<>();
+		for(int i=1; i<=3; i++) {
+			BmiVO vo = context.getBean("vo" + i, BmiVO.class);
+			vos.add(vo);
+		}
+		
+		// 서비스에서 BMI 계산
+		bmiService.calcBmiList(vos);
+		
+		model.addAttribute("vos", vos);
+		
+		context.close();
+		return "study1/xml/xmlTest5";
 	}
 }

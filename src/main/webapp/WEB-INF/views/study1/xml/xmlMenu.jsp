@@ -18,9 +18,10 @@
 		<hr/>
 		<div>
 			<a href="xmlTest1" class="btn btn-success me-2">성적자료주입</a>
-			<a href="xmlTest2" class="btn btn-primary me-2">성적자료계산</a>
+			<a href="xmlTest2" class="btn btn-primary me-2">성적자료계산(숙제)</a>
 			<a href="xmlTest3" class="btn btn-secondary me-2">JDBC정보1</a>
 			<a href="xmlTest4" class="btn btn-info me-2">JDBC정보2</a>
+			<a href="xmlTest5" class="btn btn-info me-2">BMI측정(숙제)</a>
 		</div>
 	</div>
 <p><br/></p>

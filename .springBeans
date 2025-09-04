@@ -10,6 +10,7 @@
 		<config>src/main/resources/xml/sungjuk.xml</config>
 		<config>src/main/resources/xml/siteInfor.xml</config>
 		<config>src/main/resources/xml/siteInforP.xml</config>
+		<config>src/main/resources/xml/bmi.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

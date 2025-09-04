@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="vo1" class="com.spring.springGroupS.vo.BmiVO">
+		<property name="name" value="홍길동" />
+		<property name="height" value="170" />
+		<property name="weight" value="60" />
+	</bean>
+	
+	<bean id="vo2" class="com.spring.springGroupS.vo.BmiVO">
+		<property name="name" value="김말숙" />
+		<property name="height" value="165" />
+		<property name="weight" value="45" />
+	</bean>
+	
+	<bean id="vo3" class="com.spring.springGroupS.vo.BmiVO">
+		<property name="name" value="이기자" />
+		<property name="height" value="180" />
+		<property name="weight" value="100" />
+	</bean>
+
+</beans>
