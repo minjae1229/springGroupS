@@ -27,4 +27,13 @@ create table member (
   primary key (idx),
   unique(mid)
 );
+desc member;
 
+insert into member (mid, pwd, nickName, name, gender, email, job, hobby, level, point)
+values 
+  ('admin', '1234', '관리자', '관리자', '남자', 'admin@test.com', '관리자', '관리', 0, 1000),
+  ('hkd1234', '1234', '길동', '홍길동', '남자', 'hkd@test.com', '학생', '독서/운동', 3, 100),
+  ('kms1234', '1234', '말숙', '김말숙', '여자', 'kms@test.com', '직장인', '영화감상/운동', 3, 100),
+  ('ikj1234', '1234', '기자', '이기자', '남자', 'ikj@test.com', '직장인', '뉴스보기/운동', 3, 100);
+
+select * from member;
